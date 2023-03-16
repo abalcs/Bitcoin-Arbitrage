@@ -3,14 +3,15 @@ import * as d3 from 'd3';
 import datum from '../data/profit.csv';
 
 const BarChart = () => {
-    useEffect(() => {
+    
+    let buildChart = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
         const HEIGHT = 400 - MARGIN.TOP - MARGIN.BOTTOM
 
         d3.select('#barChart').selectAll('svg').remove()
         const svg = d3.select("#barChart")
-        .append("svg")
+        .append("svg") 
         .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
         .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
 
@@ -20,7 +21,7 @@ const BarChart = () => {
         // X label
         g.append("text")
         .attr("class", "x axis-label")
-        .attr("x", WIDTH / 2)
+        .attr("x", WIDTH / 2.25)
         .attr("y", HEIGHT + 70)
         .attr("font-size", "20px")
         .attr("text-anchor", "middle")
@@ -34,7 +35,7 @@ const BarChart = () => {
         .attr("font-size", "20px")
         .attr("text-anchor", "middle")
         .attr("transform", "rotate(-90)")
-        .text("Profit ($)")
+        .text("Sats Profit ($)")
 
         d3.csv(datum).then(data => {
             data.forEach(d => {
@@ -64,7 +65,7 @@ const BarChart = () => {
 
         const yAxisCall = d3.axisLeft(y)
             .ticks(5)
-            .tickFormat(d => d + "m")
+            .tickFormat(d => d + " sats")
         g.append("g")
             .attr("class", "y axis")
             .call(yAxisCall)
@@ -79,8 +80,12 @@ const BarChart = () => {
             .attr("height", d => HEIGHT - y(d.revenue))
             .attr("fill", "orange")
         })
-    }, [])
+    }
 
+    useEffect(() => {
+        buildChart();
+    }, [])
+    
     return (
         <div className='barChart'>
             <div id='barChart'></div>

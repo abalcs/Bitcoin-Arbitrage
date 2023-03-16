@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './components/Header';
 import BarChart from './components/BarChart';
+import ScatterPlot from './components/ScatterPlot';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <div>
       <Header/>
       <BarChart />
+      <ScatterPlot />
     </div>
   );
 }

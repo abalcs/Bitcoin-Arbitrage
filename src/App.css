@@ -6,19 +6,29 @@ html {
 
 body {
   background-color: #fff;
+  min-height: 100vh;
 }
 
 header {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   background-color: #fff;
   color: rgb(226, 156, 26);
   box-shadow: 0 4px 6px -6px #222;
 }
 
+.title, .total {
+  display: flex;
+  margin: 0 5rem;
+}
+
+.total h2 {
+  font-size: 1.25rem;
+}
+
 header img {
   width: 50px;
-  margin-left: 5rem;
+  /* margin-left: 5rem; */
   padding: 10px
 }
 
@@ -36,9 +46,16 @@ header h2 {
   /* background-color: rgb(211, 211, 211); */
 }
 
-#barChart {
+.scatterPlot {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+
+#barChart, #scatterPlot {
   border: 1px solid grey;
   padding: 50px;
+  box-shadow: 3px 3px 3px 0 lightgrey;
   /* background-color: rgb(211, 211, 211); */
   border-radius: 2%;
 }
