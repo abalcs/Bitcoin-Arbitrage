@@ -9,8 +9,8 @@ const Header = () => {
                 <h2>Arbitrage Tracker</h2>
             </div>
             <div className='total'>
-                <h2>Total Sats: </h2>
-                <h2>Current $: </h2>
+                <h2 id='satsTotal'>Total Sats: </h2>
+                <h2 id='USDTotal'>Current $: </h2>
             </div>
         </header>
     )

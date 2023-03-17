@@ -5,7 +5,7 @@ import datum from '../data/profit.csv';
 let ScatterPlot = () => {
 
     let buildPlot = () => {
-        const MARGIN = { LEFT: 100, RIGHT: 10, TOP: 10, BOTTOM: 130 }
+        const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
         const HEIGHT = 400 - MARGIN.TOP - MARGIN.BOTTOM
 
@@ -27,7 +27,7 @@ let ScatterPlot = () => {
         .attr("y", HEIGHT + 70)
         .attr("font-size", "20px")
         .attr("text-anchor", "middle")
-        .text("Date")
+        .text("Premium")
 
         // Y label
         const yLabel = g.append("text")
@@ -58,6 +58,7 @@ let ScatterPlot = () => {
                 d.revenue = Number(d.revenue)
                 d.profit = Number(d.profit)
                 d.prem = Number(d.prem)
+                d.trades = Number(d.trades)
             })
 
             // d3.interval(() => {
@@ -74,7 +75,7 @@ let ScatterPlot = () => {
             const t = d3.transition().duration(750)
 
             x.domain(data.map(d => d.prem))
-            y.domain([0, d3.max(data, d => d[value])])
+            y.domain([0, d3.max(data, d => d.trades)])
             
             const xAxisCall = d3.axisBottom(x)
             g.append("g")
@@ -87,7 +88,7 @@ let ScatterPlot = () => {
             
             const yAxisCall = d3.axisLeft(y)
                 .ticks(5)
-                .tickFormat(d => d + " sats")
+                .tickFormat(d => d + " trades")
                 yAxisGroup.transition(t).call(yAxisCall)
             
             //Join new data with old elements
@@ -103,7 +104,7 @@ let ScatterPlot = () => {
 
             //Update old elements present in new data
             rects.transition(t)
-                .attr("cy", d => y(d[value]))
+                .attr("cy", d => y(d.trades))
                 .attr("cx", (d) => x(d.prem) + (x.bandwidth() / 2))
 
             // Enter new elements present in new data
@@ -113,10 +114,10 @@ let ScatterPlot = () => {
                 .attr("cy", y(0))
                 .attr("r", 5)
                 .transition(t)
-                    .attr("cy", d => y(d[value]))
-                    .attr("height", d => HEIGHT - y(d[value]))
+                    .attr("cy", d => y(d.trades))
+                    .attr("height", d => HEIGHT - y(d.trades))
 
-            const text = flag ? "Sats Profit ($)" : "Revenue ($)"
+            const text = flag ? "Trades" : "Revenue ($)"
             yLabel.text(text)
         }
     }  
@@ -133,6 +134,3 @@ let ScatterPlot = () => {
 }
 
 export default ScatterPlot;
-
-
-

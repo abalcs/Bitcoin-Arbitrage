@@ -8,8 +8,11 @@ function App() {
   return (
     <div>
       <Header/>
-      <BarChart />
-      <ScatterPlot />
+      <div className='graphs'>
+        <BarChart />
+        <ScatterPlot />
+      </div>
+     
     </div>
   );
 }

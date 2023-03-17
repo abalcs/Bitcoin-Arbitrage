@@ -38,6 +38,8 @@ const BarChart = () => {
         .text("Sats Profit ($)")
 
         d3.csv(datum).then(data => {
+            const t = d3.transition().duration(750)
+
             data.forEach(d => {
             d.revenue = Number(d.revenue)
         })
