@@ -71,7 +71,7 @@ let ScatterPlot = () => {
         })
 
         function update(data) {
-            const value = flag ? "profit" : "revenue"
+            // const value = flag ? "profit" : "revenue"
             const t = d3.transition().duration(750)
 
             x.domain(data.map(d => d.prem))
