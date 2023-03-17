@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-import datum from '../data/profit.csv';
+import datum from '../../data/profit.csv';
 
 const BarChart = () => {
     

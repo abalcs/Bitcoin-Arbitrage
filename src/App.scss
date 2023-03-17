@@ -1,0 +1,29 @@
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.graphs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.barChart, .scatterPlot {
+  display: flex;
+  justify-content: center;
+  padding: 25px 20px;
+}
+
+#barChart, #scatterPlot {
+  border: 1px solid grey;
+  padding: 50px;
+  box-shadow: 3px 3px 3px 0 lightgrey;
+  border-radius: 2%;
+}
