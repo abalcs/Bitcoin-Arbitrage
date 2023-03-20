@@ -7,7 +7,7 @@ const tradesData = [
         revenue: 100000,
         profit: 100000,
         prem: 3.00,
-        trades: 5
+        // trades: 5
     },
 ]
 
