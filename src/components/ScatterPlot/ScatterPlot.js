@@ -57,24 +57,39 @@ let ScatterPlot = () => {
             data.forEach(d => {
                 d.revenue = Number(d.revenue)
                 d.profit = Number(d.profit)
-                d.prem = Number(d.prem)
+                d.prem = Number(d.prem).toFixed(2)
                 d.trades = Number(d.trades)
             })
 
+            // data.map((d) => {
+            //     console.log(d.prem)
+            // })
+
+            // console.log(data)
+
+            // let orderedPrem = data.prem.sort()
+            // console.log(orderedPrem)
             // d3.interval(() => {
             //     flag = !flag;
             //     const newData = flag ? data : data.slice(1)
             //     update(newData)
             // }, 2000)
-
+           
             update(data)
         })
 
         function update(data) {
             // const value = flag ? "profit" : "revenue"
             const t = d3.transition().duration(750)
+            const spread = [];
 
-            x.domain(data.map(d => d.prem))
+            for(let i = 0; i < data.length; i++) {
+                spread.push((data[i].prem))
+            }
+
+            spread.sort()
+            
+            x.domain(spread.map(d => d))
             y.domain([0, d3.max(data, d => d.trades)])
             
             const xAxisCall = d3.axisBottom(x)
