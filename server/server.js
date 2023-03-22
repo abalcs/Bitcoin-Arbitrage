@@ -1,10 +1,11 @@
+// const getTrades = require('../server/api/tradeRoutes');
+const Trade = require('./models/Trade')
 const express = require('express');
 const path = require('path');
-// const routes = require('./routes/api_routes');
+// const routes = require('./api/tradeRoutes');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 5050;
-
 // express returns an Object
 const app = express(); // instance = Object
 
@@ -14,6 +15,21 @@ app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  Trade.findAll({
+    attributes: [
+        'id',
+        'date',
+        'revenue',
+        'profit',
+        'prem',
+        'trades'
+    ],
+  })
+  .then(data => {
+      res.json(data);
+  })
+})
 
 // routes(app);
 
