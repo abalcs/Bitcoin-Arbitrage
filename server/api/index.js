@@ -1,9 +1,7 @@
-// const router = require('express').Router();
+const router = require('express').Router();
 
-// const apiRoutes = require('../api');
-// const tradeRoutes = require('../api/tradeRoutes');
+const tradeRoutes = require('../api/tradeRoutes');
 
-// router.use('/api', apiRoutes);
-// router.use('/trade', tradeRoutes);
+router.use('/', tradeRoutes);
 
-// module.exports = router;
+module.exports = router;

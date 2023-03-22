@@ -1,8 +1,6 @@
-// const getTrades = require('../server/api/tradeRoutes');
-const Trade = require('./models/Trade')
 const express = require('express');
 const path = require('path');
-// const routes = require('./api/tradeRoutes');
+const routes = require('./api/');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 5050;
@@ -15,23 +13,7 @@ app.use('/', express.static(path.join(__dirname, 'client/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  Trade.findAll({
-    attributes: [
-        'id',
-        'date',
-        'revenue',
-        'profit',
-        'prem',
-        'trades'
-    ],
-  })
-  .then(data => {
-      res.json(data);
-  })
-})
-
-// routes(app);
+app.use(routes);
 
 // Heroku 
 if (process.env.NODE_ENV === 'production') {
