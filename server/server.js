@@ -2,12 +2,14 @@ const express = require('express');
 const path = require('path');
 const routes = require('./api/');
 const db = require('./config/connection');
+const cors = require('cors')
 
 const PORT = process.env.PORT || 5050;
 // express returns an Object
 const app = express(); // instance = Object
 
 // Setup our server
+app.use(cors())
 app.use('/', express.static(path.join(__dirname, 'client/build')));
 
 app.use(express.json());

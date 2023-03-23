@@ -25,15 +25,10 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     Trade.create({
-    //   date: req.body.date,
-    //   revenue: req.body.revenue,
-    //   profit: req.body.profit,
-    //   prem: req.body.prem,
-    //   trades: null,
-      date: '2023-03-22',
-      revenue: 25000,
-      profit: 25000,
-      prem: 2.5,
+      date: req.body.date,
+      revenue: req.body.revenue,
+      profit: req.body.profit,
+      prem: req.body.prem,
       trades: null,
     })
     .then(() => {

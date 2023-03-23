@@ -5,13 +5,13 @@ const Form = () => {
     const [dateLog, setDateLog] = useState('')
     const [profitLog, setProfitLog] = useState('')
     const [premiumLog, setPremiumLog] = useState('')
-
-    let date = document.querySelector('#date')
-    let profit = document.querySelector('#profit')
-    let premium = document.querySelector('#premium')
-
-    const getInputs = (e) => {
+    
+    const getInputs = async (e) => {
         e.preventDefault()
+
+        let date = document.querySelector('#date')
+        let profit = document.querySelector('#profit')
+        let premium = document.querySelector('#premium')
 
         setDateLog(date.value)
         setProfitLog(profit.value)
@@ -20,10 +20,20 @@ const Form = () => {
         date.value = ''
         profit.value = ''
         premium.value = ''
-    }
 
-    // Write post route to send thru api to db
-
+        await fetch('http://localhost:5050/', {
+            method: 'Post',
+            body: JSON.stringify({
+                date: dateLog,
+                revenue: profitLog,
+                profit: profitLog,
+                prem: premiumLog,
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+        // .then(res => console.log(res));
+    };
+   
     return (
         <form id='form' onSubmit={getInputs}>
             <div className={`${style.formContainer}`}>

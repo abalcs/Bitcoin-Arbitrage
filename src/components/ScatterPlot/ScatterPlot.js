@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import datum from '../../data/profit.csv';
 
-let ScatterPlot = () => {
-
+let ScatterPlot = (data) => {
     let buildPlot = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
