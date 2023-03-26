@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-import datum from '../../data/profit.csv';
 
-const BarChart = (data) => {
+const BarChart = ({data}) => {
+
     let buildChart = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
@@ -36,13 +36,13 @@ const BarChart = (data) => {
         .attr("transform", "rotate(-90)")
         .text("Sats Profit ($)")
 
-        d3.csv(datum).then(data => {
+        // ***--- KEEPING THIS HERE FOR FUTURE CSV TESTING ---***
+        // d3.csv(datum).then(data => {
             // const t = d3.transition().duration(750)
 
-            data.forEach(d => {
-            d.revenue = Number(d.revenue)
-        })
-
+        //     data.forEach(d => {
+        //     d.profit = Number(d.profit)
+        // })
         const x = d3.scaleBand()
             .domain(data.map(d => d.date))
             .range([0, WIDTH])
@@ -50,7 +50,7 @@ const BarChart = (data) => {
             .paddingOuter(0.2)
         
         const y = d3.scaleLinear()
-            .domain([0, d3.max(data, d => d.revenue)])
+            .domain([0, d3.max(data, d => d.profit)])
             .range([HEIGHT, 0])
 
         const xAxisCall = d3.axisBottom(x)
@@ -75,17 +75,18 @@ const BarChart = (data) => {
             .data(data)
         
         rects.enter().append("rect")
-            .attr("y", d => y(d.revenue))
+            .attr("y", d => y(d.profit))
             .attr("x", (d) => x(d.date))
             .attr("width", x.bandwidth)
-            .attr("height", d => HEIGHT - y(d.revenue))
+            .attr("height", d => HEIGHT - y(d.profit))
             .attr("fill", "orange")
-        })
+        // })
     }
 
     useEffect(() => {
         buildChart();
-    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data])
     
     return (
         <div className='barChart'>

@@ -13,19 +13,15 @@ Trade.init(
         },
         date: {
             type: DataTypes.STRING,
-            // allowNull: false
-        },
-        revenue: {
-            type: DataTypes.INTEGER,
-            // allowNull: false
+            allowNull: false
         },
         profit: {
             type: DataTypes.INTEGER,
-            // allowNull: false
+            allowNull: false
         },
         prem: {
-            type: DataTypes.DECIMAL,
-            // allowNull: false
+            type: DataTypes.DECIMAL(10,2),
+            allowNull: false
         },
         trades: {
             type: DataTypes.INTEGER,

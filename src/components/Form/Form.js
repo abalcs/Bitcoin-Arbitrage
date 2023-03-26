@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './form.module.scss';
 
 const Form = () => {
-    const [dateLog, setDateLog] = useState('')
-    const [profitLog, setProfitLog] = useState('')
-    const [premiumLog, setPremiumLog] = useState('')
     
     const getInputs = async (e) => {
         e.preventDefault()
@@ -12,26 +9,23 @@ const Form = () => {
         let date = document.querySelector('#date')
         let profit = document.querySelector('#profit')
         let premium = document.querySelector('#premium')
-
-        setDateLog(date.value)
-        setProfitLog(profit.value)
-        setPremiumLog(premium.value)
-
-        date.value = ''
-        profit.value = ''
-        premium.value = ''
+        let trades = document.querySelector('#trades')
 
         await fetch('http://localhost:5050/', {
             method: 'Post',
             body: JSON.stringify({
-                date: dateLog,
-                revenue: profitLog,
-                profit: profitLog,
-                prem: premiumLog,
+                date: date.value,
+                profit: profit.value,
+                prem: premium.value,
+                trades: trades.value
             }),
             headers: { 'Content-Type': 'application/json' }
         })
-        // .then(res => console.log(res));
+
+        date.value = ''
+        profit.value = ''
+        premium.value = ''
+        trades.value = ''
     };
    
     return (
@@ -48,6 +42,10 @@ const Form = () => {
                 <div className={`${style.formInput}`}>
                     <label>PREMIUM %</label>
                     <input id='premium' type='text' required></input>
+                </div>
+                <div className={`${style.formInput}`}>
+                    <label># of TRADES</label>
+                    <input id='trades' type='number' min='1' required></input>
                 </div>
                 <div className={`${style.buttonInput}`}>
                     <button type='submit' id='button'>Enter</button>

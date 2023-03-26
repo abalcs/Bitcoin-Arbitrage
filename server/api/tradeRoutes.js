@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
         attributes: [
             'id',
             'date',
-            'revenue',
             'profit',
             'prem',
             'trades'
@@ -26,10 +25,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     Trade.create({
       date: req.body.date,
-      revenue: req.body.revenue,
       profit: req.body.profit,
       prem: req.body.prem,
-      trades: null,
+      trades: req.body.trades,
     })
     .then(() => {
       res.json("New Record Entered Succesfully!")
