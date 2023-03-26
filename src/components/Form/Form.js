@@ -26,6 +26,8 @@ const Form = () => {
         profit.value = ''
         premium.value = ''
         trades.value = ''
+
+        window.location.reload()
     };
    
     return (

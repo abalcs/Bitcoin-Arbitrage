@@ -18,7 +18,9 @@ function App() {
   }
 
   const getPrice = async () => {
-    await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+    await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', {
+      mode: 'no-cors'
+    })
     .then((res) => res.json())
     .then((data) => setBtc(data.bitcoin.usd))    
     .catch((e) => console.error(e))

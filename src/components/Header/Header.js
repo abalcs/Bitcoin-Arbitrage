@@ -13,7 +13,7 @@ const Header = ({data, btc}) => {
     let sats = Number(sum.toFixed(2)).toLocaleString('en-US') 
 
     let btcFormat = sum / 100000000;
-    let displayPrice = Number(btcFormat * btc).toFixed(2).toLocaleString('en-US')
+    let displayPrice = Number((btcFormat * btc).toFixed(2)).toLocaleString('en-US')
     
     return (
         <header>

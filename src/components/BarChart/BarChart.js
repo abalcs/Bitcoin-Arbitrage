@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 
 const BarChart = ({data}) => {
-
+ 
     let buildChart = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
@@ -82,7 +82,7 @@ const BarChart = ({data}) => {
             .attr("fill", "orange")
         // })
     }
-
+   
     useEffect(() => {
         buildChart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
