@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-import datum from '../../data/profit.csv';
+// import datum from '../../data/profit.csv';
 
-let ScatterPlot = (data) => {
+let ScatterPlot = ({data}) => {
     let buildPlot = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
         const WIDTH = 600 - MARGIN.LEFT - MARGIN.RIGHT
@@ -52,13 +52,13 @@ let ScatterPlot = (data) => {
         const yAxisGroup = g.append("g")
             .attr("class", "y axis")
 
-        d3.csv(datum).then(data => {
-            data.forEach(d => {
-                d.revenue = Number(d.revenue)
-                d.profit = Number(d.profit)
-                d.prem = Number(d.prem).toFixed(2)
-                d.trades = Number(d.trades)
-            })
+        // d3.csv(datum).then(data => {
+        //     data.forEach(d => {
+        //         d.revenue = Number(d.revenue)
+        //         d.profit = Number(d.profit)
+        //         d.prem = Number(d.prem).toFixed(2)
+        //         d.trades = Number(d.trades)
+        //     })
 
             // data.map((d) => {
             //     console.log(d.prem)
@@ -74,7 +74,14 @@ let ScatterPlot = (data) => {
             //     update(newData)
             // }, 2000)
            
-            update(data)
+            // update(data)
+        // })
+        
+        data = data.map((d) => {
+            return {
+                prem: Number(d.prem).toFixed(2),
+                trades: d.trades
+            }
         })
 
         function update(data) {
@@ -134,11 +141,13 @@ let ScatterPlot = (data) => {
             const text = flag ? "Trades" : "Revenue ($)"
             yLabel.text(text)
         }
+        update(data)
     }  
 
     useEffect(() => {
         buildPlot();
-    }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data])
     
     return (
         <div className='scatterPlot'>
