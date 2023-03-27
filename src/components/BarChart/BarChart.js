@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
+// import * as d3tip from "d3-tip";
+import * as d3tip from "d3-v6-tip";
 
 const BarChart = ({data}) => {
  
@@ -16,6 +18,17 @@ const BarChart = ({data}) => {
 
         const g = svg.append("g")
         .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+
+        const tip = d3tip.tip()
+        .attr('class', 'd3-tip')
+        .html((e, d) => {
+            console.log(d)
+            let text = `<strong>Profit:  </strong> <span style='color:lightblue;float:right'>${d.profit}</span><br>`
+            text += `<strong>Spread:  </strong> <span style='color:lightblue;float:right'>${d.prem}%</span><br>`
+            text += `<strong>Trades:  </strong> <span style='color:lightblue;float:right'>${d.trades}</span><br>`
+            return text
+        })
+        g.call(tip)
 
         // X label
         g.append("text")
@@ -75,6 +88,8 @@ const BarChart = ({data}) => {
             .data(data)
         
         rects.enter().append("rect")
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide)
             .attr("y", d => y(d.profit))
             .attr("x", (d) => x(d.date))
             .attr("width", x.bandwidth)

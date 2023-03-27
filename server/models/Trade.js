@@ -25,7 +25,7 @@ Trade.init(
         },
         trades: {
             type: DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
         }
     },
     {

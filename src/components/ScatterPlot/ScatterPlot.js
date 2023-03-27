@@ -86,7 +86,7 @@ let ScatterPlot = ({data}) => {
 
         // function update(data) {
             // const value = flag ? "profit" : "revenue"
-            // const t = d3.transition().duration(750)
+            const t = d3.transition().duration(750)
             const spread = [];
 
             for(let i = 0; i < data.length; i++) {
@@ -100,8 +100,8 @@ let ScatterPlot = ({data}) => {
             
             const xAxisCall = d3.axisBottom(x)
             g.append("g")
-                // xAxisGroup.transition(t).call(xAxisCall)
-                xAxisGroup.call(xAxisCall)
+                xAxisGroup.transition(t).call(xAxisCall)
+                // xAxisGroup.call(xAxisCall)
                 .selectAll("text")
                 .attr("y", "10")
                 .attr("x", "-5")
@@ -111,8 +111,8 @@ let ScatterPlot = ({data}) => {
             const yAxisCall = d3.axisLeft(y)
                 .ticks(5)
                 .tickFormat(d => d + " trades")
-                // yAxisGroup.transition(t).call(yAxisCall)
-                yAxisGroup.call(yAxisCall)
+                yAxisGroup.transition(t).call(yAxisCall)
+                // yAxisGroup.call(yAxisCall)
             
             //Join new data with old elements
             const rects = g.selectAll("circle")
@@ -120,7 +120,7 @@ let ScatterPlot = ({data}) => {
             //Exit old elements not present in new data
             rects.exit()
                 .attr("fill", "red")
-                // .transition(t)
+                .transition(t)
                     .attr("height", 0)
                     .attr("cy", y(0))
                     .remove()
@@ -136,7 +136,7 @@ let ScatterPlot = ({data}) => {
                 .attr("fill", "orange")
                 .attr("cy", y(0))
                 .attr("r", 5)
-                // .transition(t)
+                .transition(t)
                     .attr("cy", d => y(d.trades))
                     .attr("height", d => HEIGHT - y(d.trades))
 
