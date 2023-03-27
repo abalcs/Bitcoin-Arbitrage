@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-// import datum from '../../data/profit.csv';
+import * as d3tip from "d3-v6-tip";
 
 let ScatterPlot = ({data}) => {
     let buildPlot = () => {
@@ -18,6 +18,17 @@ let ScatterPlot = ({data}) => {
 
         const g = svg.append("g")
         .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
+
+        const tip = d3tip.tip()
+        .attr('class', 'd3-tip')
+        .html((e, d) => {
+            console.log(d)
+            let text = `<strong>Date:</strong> <span style='color:lightblue;float:right'>${d.date}</span><br>`
+            text += `<strong>Spread:</strong> <span style='color:lightblue;float:right'>${d.prem}%</span><br>`
+            text += `<strong>Trades:</strong> <span style='color:lightblue;float:right'>${d.trades}</span><br>`
+            return text
+        })
+        g.call(tip)
 
         // X label
         g.append("text")
@@ -79,6 +90,8 @@ let ScatterPlot = ({data}) => {
         
         data = data.map((d) => {
             return {
+                date: d.date,
+                profit: d.profit,
                 prem: Number(d.prem).toFixed(2),
                 trades: d.trades
             }
@@ -132,6 +145,8 @@ let ScatterPlot = ({data}) => {
 
             // Enter new elements present in new data
             rects.enter().append("circle")
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide)
                 .attr("cx", (d) => x(d.prem))
                 .attr("fill", "orange")
                 .attr("cy", y(0))

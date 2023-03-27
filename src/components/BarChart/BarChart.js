@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-// import * as d3tip from "d3-tip";
 import * as d3tip from "d3-v6-tip";
 
 const BarChart = ({data}) => {
@@ -22,10 +21,9 @@ const BarChart = ({data}) => {
         const tip = d3tip.tip()
         .attr('class', 'd3-tip')
         .html((e, d) => {
-            console.log(d)
-            let text = `<strong>Profit:  </strong> <span style='color:lightblue;float:right'>${d.profit}</span><br>`
-            text += `<strong>Spread:  </strong> <span style='color:lightblue;float:right'>${d.prem}%</span><br>`
-            text += `<strong>Trades:  </strong> <span style='color:lightblue;float:right'>${d.trades}</span><br>`
+            let text = `<strong>Profit:</strong> <span style='color:lightblue;float:right'>${d.profit}</span><br>`
+            text += `<strong>Spread:</strong> <span style='color:lightblue;float:right'>${d.prem}%</span><br>`
+            text += `<strong>Trades:</strong> <span style='color:lightblue;float:right'>${d.trades}</span><br>`
             return text
         })
         g.call(tip)
