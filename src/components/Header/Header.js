@@ -14,7 +14,27 @@ const Header = ({data, btc}) => {
 
     let btcFormat = sum / 100000000;
     let displayPrice = Number((btcFormat * btc).toFixed(2)).toLocaleString('en-US')
-    
+
+    let getSeven = () => {
+        let sevDay = [];
+        let initSevVal = 0;
+        let final = []
+
+        data = data.map((d, i) => {
+            sevDay.push(d.profit)
+        })
+
+        for(let i = sevDay.length - 1; i >= sevDay.length - 8; i--) {
+            final.push(sevDay[i])
+        }
+
+        final = final.reduce((acc, curr) => acc + curr, initSevVal)
+        final = final / 100000000
+        final  = Number((final * btc).toFixed(2)).toLocaleString('en-US')
+
+        return final
+    }
+
     return (
         <header>
             <div className={`${style.title}`}>
@@ -24,6 +44,7 @@ const Header = ({data, btc}) => {
             <div className={`${style.total}`}>
                 <h2 id='satsTotal'>Total Sats: {sats}</h2>
                 <h2 id='USDTotal'>Current $: {displayPrice}</h2>
+                <h2 id='lastSeven'>7-Day $: {getSeven()}</h2>
             </div>
         </header>
     )
