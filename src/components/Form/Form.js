@@ -51,6 +51,7 @@ const Form = () => {
             }),
             headers: { 'Content-Type': 'application/json' }
         })
+        handleOpen()
     };
 
     return (
@@ -74,7 +75,7 @@ const Form = () => {
                     <input id='trades' type='number' min='1' required></input>
                 </div>
                 <div className={`${style.buttonInput}`}>
-                    <button type='submit' id='button' onClick={handleOpen}>Enter</button>
+                    <button type='submit' id='button' >Enter</button>
                 </div>
             </div>
         </form>
