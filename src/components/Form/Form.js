@@ -1,7 +1,32 @@
-import React from 'react';
+import { Box, Modal, Typography } from '@mui/material';
+import React, {useState} from 'react';
 import style from './form.module.scss';
 
 const Form = () => {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+        window.location.reload()
+    }
+
+    const [date, setDate] = useState()
+    const [profit, setProfit] = useState()
+    const [prem, setPrem] = useState()
+    const [trades, setTrades] = useState()
+
+    const modalStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid orange',
+        boxShadow: 24,
+        p: 4,
+        textAlign: 'center'
+      };
     
     const getInputs = async (e) => {
         e.preventDefault()
@@ -10,6 +35,11 @@ const Form = () => {
         let profit = document.querySelector('#profit')
         let premium = document.querySelector('#premium')
         let trades = document.querySelector('#trades')
+
+        setDate(date.value)
+        setProfit(profit.value)
+        setPrem(premium.value)
+        setTrades(trades.value)
 
         await fetch('http://localhost:5050/', {
             method: 'Post',
@@ -21,16 +51,10 @@ const Form = () => {
             }),
             headers: { 'Content-Type': 'application/json' }
         })
-
-        date.value = ''
-        profit.value = ''
-        premium.value = ''
-        trades.value = ''
-
-        window.location.reload()
     };
-   
+
     return (
+        <>
         <form id='form' onSubmit={getInputs}>
             <div className={`${style.formContainer}`}>
                 <div className={`${style.formInput}`}>
@@ -50,10 +74,36 @@ const Form = () => {
                     <input id='trades' type='number' min='1' required></input>
                 </div>
                 <div className={`${style.buttonInput}`}>
-                    <button type='submit' id='button'>Enter</button>
+                    <button type='submit' id='button' onClick={handleOpen}>Enter</button>
                 </div>
             </div>
         </form>
+        
+        <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            >
+            <Box sx={modalStyle}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                New Record Added Successfully!
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <strong>Date:</strong> {date}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <strong>Profit:</strong> {profit}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <strong>Premium:</strong> {prem}
+                </Typography>
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <strong>Trades:</strong> {trades}
+                </Typography>
+            </Box>
+        </Modal>
+        </>
     );
 }
 
