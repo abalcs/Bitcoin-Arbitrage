@@ -105,7 +105,9 @@ const BarChart = ({data}) => {
     
     return (
         <div className='barChart'>
+            <h2>Bar Chart</h2>
             <div id='barChart'></div>
+            <p><em>Provides historical look at daily profit.  Tool tips include the number of trades and the average spread on the given day.</em></p>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { Box, Modal, TextField, Typography } from '@mui/material';
+import { Box, Modal, TextField, Typography, Button } from '@mui/material';
 import React, {useState} from 'react';
 import style from './form.module.scss';
 
@@ -57,23 +57,60 @@ const Form = () => {
     return (
         <>
         <form id='form' onSubmit={getInputs}>
-            <div className={`${style.formContainer}`}>
+            <div style={{display: 'flex'}}>
                 <div className={`${style.formInput}`}>
-                    <label>DATE</label>
-                    <TextField id="date" type='date' variant="outlined" required/>
+                    <TextField 
+                    sx={{ width: '200px', margin: '5px 15px'}} 
+                    id="date" 
+                    type='date' 
+                    variant="outlined" 
+                    color='primary' 
+                    required
+                    />
                 </div>
                 <div className={`${style.formInput}`}>
-                    <TextField id="profit" label="Profit (sats)" type='text' variant="outlined" required/>
+                    <TextField 
+                    sx={{ width: '200px', margin: '5px 15px'}} 
+                    id="profit" 
+                    placeholder='฿'
+                    label="฿ Profit (sats)" 
+                    type='text' 
+                    variant="outlined" 
+                    color='primary' 
+                    required/>
+                </div>
+            </div>
+            <div style={{display: 'flex'}}>
+                <div className={`${style.formInput}`}>
+                    <TextField 
+                    sx={{ width: '200px', margin: '5px 15px'}} 
+                    id="premium" label='Premium %' 
+                    type='text' 
+                    variant="outlined" 
+                    color='primary' 
+                    required/>
                 </div>
                 <div className={`${style.formInput}`}>
-                    <TextField id="premium" label='Premium %' type='text' variant="outlined" required/>
+                    <TextField 
+                    sx={{ width: '200px', margin: '5px 15px'}} 
+                    id="trades" 
+                    label='# Trades' 
+                    type='number'
+                    min='1' 
+                    variant="outlined" 
+                    color='primary' 
+                    required/>
                 </div>
-                <div className={`${style.formInput}`}>
-                    <TextField id="trades" label='Trades' type='number' min='1' variant="outlined" required/>
-                </div>
-                <div className={`${style.buttonInput}`}>
-                    <button type='submit' id='button' >Enter</button>
-                </div>
+            </div>
+            <div className={`${style.buttonInput}`}>
+                <Button 
+                sx={{ width: '200px'}} 
+                type='submit' 
+                id='button' 
+                variant="contained" 
+                color='primary'>
+                SUBMIT ENTRY
+                </Button>
             </div>
         </form>
         

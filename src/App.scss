@@ -7,18 +7,30 @@ html {
 body {
   background-color: #fff;
   min-height: 100vh;
+  max-width: 100%;
 }
 
 .graphs {
   display: flex;
-  justify-content: space-around;
+  // flex-direction: row;
+  justify-content: center;
+  // align-items: center;
   flex-wrap: wrap;
 }
 
 .barChart, .scatterPlot {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 25px 20px;
+  // max-width: 50%;
+}
+
+.barChart p, .scatterPlot p {
+  margin-top: 10px;
+  width: 70%;
+  text-align: center;
 }
 
 #barChart, #scatterPlot {

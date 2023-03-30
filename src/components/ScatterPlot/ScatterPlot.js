@@ -155,7 +155,9 @@ let ScatterPlot = ({data}) => {
     
     return (
         <div className='scatterPlot'>
+            <h2>Scatter Plot</h2>
             <div id='scatterPlot'></div>
+            <p><em>Compares the daily spread average to the total number of trades on the given day.  Larger dots indicate higher profit totals for the day.</em></p>
         </div>
     )
 }
