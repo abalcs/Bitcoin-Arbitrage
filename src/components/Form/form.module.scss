@@ -4,19 +4,20 @@ form {
     align-items: center;
   }
   
-  input {
-    padding: 7px;
-    border-radius: 30px;
-    margin: 10px;
-    min-width: 150px;
-  }
+  // input {
+  //   padding: 7px;
+  //   border-radius: 30px;
+  //   margin: 10px;
+  //   min-width: 150px;
+  // }
   
   .formContainer {
     border: 1px solid black;
     padding: 25px 40px;
-    margin-top: 20px;
-    border-radius: 5%;
+      // margin-top: 20px;
+    // border-radius: 5%;
     background-color: #acacac;
+    width: 100%
   }
   
   .formInput, .buttonInput {
@@ -32,4 +33,8 @@ form {
     background-color: green;
     color: white;
     text-transform: uppercase;
+  }
+
+  button:hover {
+    cursor: pointer;
   }

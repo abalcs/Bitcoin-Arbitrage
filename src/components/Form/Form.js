@@ -1,4 +1,4 @@
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, Modal, TextField, Typography } from '@mui/material';
 import React, {useState} from 'react';
 import style from './form.module.scss';
 
@@ -60,19 +60,16 @@ const Form = () => {
             <div className={`${style.formContainer}`}>
                 <div className={`${style.formInput}`}>
                     <label>DATE</label>
-                    <input id='date' type='date' required></input>
+                    <TextField id="date" type='date' variant="outlined" required/>
                 </div>
                 <div className={`${style.formInput}`}>
-                    <label>PROFIT (Sats)</label>
-                    <input id='profit' type='text' required></input>
+                    <TextField id="profit" label="Profit (sats)" type='text' variant="outlined" required/>
                 </div>
                 <div className={`${style.formInput}`}>
-                    <label>PREMIUM %</label>
-                    <input id='premium' type='text' required></input>
+                    <TextField id="premium" label='Premium %' type='text' variant="outlined" required/>
                 </div>
                 <div className={`${style.formInput}`}>
-                    <label># of TRADES</label>
-                    <input id='trades' type='number' min='1' required></input>
+                    <TextField id="trades" label='Trades' type='number' min='1' variant="outlined" required/>
                 </div>
                 <div className={`${style.buttonInput}`}>
                     <button type='submit' id='button' >Enter</button>

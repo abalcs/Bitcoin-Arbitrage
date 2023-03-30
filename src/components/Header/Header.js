@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './header.module.scss';
 
 const Header = ({data, btc}) => {
+    const [loading, setLoading] = useState(false)
+    const [sevenDay, setSevenDay] = useState()
     let satsTotal = [];
     let initalVal = 0;
 
@@ -16,6 +18,7 @@ const Header = ({data, btc}) => {
     let displayPrice = Number((btcFormat * btc).toFixed(2)).toLocaleString('en-US')
 
     let getSeven = () => {
+        // setLoading(false)
         let sevDay = [];
         let initSevVal = 0;
         let final = []
@@ -30,8 +33,14 @@ const Header = ({data, btc}) => {
         final = final / 100000000
         final  = Number((final * btc).toFixed(2)).toLocaleString('en-US')
 
-        return final
+        // setSevenDay(final)
+        // setLoading(true)
+        return final;
     }
+
+    // useEffect(() => {
+    //     getSeven()
+    // },[])
 
     return (
         <header>
@@ -40,8 +49,8 @@ const Header = ({data, btc}) => {
                 <h2>Arbitrage Tracker</h2>
             </div>
             <div className={`${style.total}`}>
-                <h2 id='satsTotal'>Total Sats: {sats}</h2>
-                <h2 id='USDTotal'>Total USD: ${displayPrice}</h2>
+                <h2 id='satsTotal'>Total Sats: {sats ? sats : 'loading'}</h2>
+                <h2 id='USDTotal'>Total USD: ${displayPrice ? displayPrice : 'loading'}</h2>
                 <h2 id='lastSeven'>Last 7: ${getSeven()}</h2>
             </div>
         </header>

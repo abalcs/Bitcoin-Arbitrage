@@ -6,6 +6,9 @@ import BarChart from './components/BarChart/BarChart';
 import ScatterPlot from './components/ScatterPlot/ScatterPlot';
 import { useEffect, useState } from 'react';
 
+// const API_KEY = require('dotenv').config();
+// console.log(API_KEY)
+
 function App() {
   const [data, setData] = useState([]);
   const [btc, setBtc] = useState()
