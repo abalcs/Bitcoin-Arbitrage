@@ -49,13 +49,6 @@ const BarChart = ({data}) => {
         .attr("transform", "rotate(-90)")
         .text("Sats Profit ($)")
 
-        // ***--- KEEPING THIS HERE FOR FUTURE CSV TESTING ---***
-        // d3.csv(datum).then(data => {
-            // const t = d3.transition().duration(750)
-
-        //     data.forEach(d => {
-        //     d.profit = Number(d.profit)
-        // })
         const x = d3.scaleBand()
             .domain(data.map(d => dateFormatter(d.date)))
             .range([0, WIDTH])

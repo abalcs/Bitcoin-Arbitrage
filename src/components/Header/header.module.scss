@@ -1,29 +1,28 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    color: rgb(226, 156, 26);
-    box-shadow: 0 4px 6px -6px #222;
-  }
+  display: flex;
+  justify-content: space-between;
+  background-color: #ddd;
+  color: rgb(226, 156, 26);
+  box-shadow: 0 4px 6px -6px #222;
+}
   
 .title, .total {
-display: flex;
-margin: 0 5rem;
+  display: flex;
+  margin: 0 5rem;
 }
 
 .total h2 {
-font-size: 1.25rem;
-color: black;
+  font-size: 1.25rem;
+  color: black;
 }
 
 header img {
-width: 50px;
-padding: 10px
+  width: 50px;
+  padding: 10px;
 }
 
 header h2 {
-display: flex;
-align-items: center;
-padding: 10px 20px;
-
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
 }
