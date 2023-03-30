@@ -97,7 +97,7 @@ const Form = () => {
                 <strong>Profit:</strong> {profit}
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <strong>Premium:</strong> {prem}
+                <strong>Premium:</strong> {prem}%
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <strong>Trades:</strong> {trades}

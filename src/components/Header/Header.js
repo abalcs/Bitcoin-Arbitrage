@@ -41,8 +41,8 @@ const Header = ({data, btc}) => {
             </div>
             <div className={`${style.total}`}>
                 <h2 id='satsTotal'>Total Sats: {sats}</h2>
-                <h2 id='USDTotal'>Total USD $: {displayPrice}</h2>
-                <h2 id='lastSeven'>Last 7 $: {getSeven()}</h2>
+                <h2 id='USDTotal'>Total USD: ${displayPrice}</h2>
+                <h2 id='lastSeven'>Last 7: ${getSeven()}</h2>
             </div>
         </header>
     )

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as d3tip from "d3-v6-tip";
 
+const dateFormatter = require('../../utils/dateFormat');
+
 let ScatterPlot = ({data}) => {
     let buildPlot = () => {
         const MARGIN = { LEFT: 90, RIGHT: 10, TOP: 40, BOTTOM: 100 }
@@ -22,9 +24,8 @@ let ScatterPlot = ({data}) => {
         const tip = d3tip.tip()
         .attr('class', 'd3-tip')
         .html((e, d) => {
-            console.log(d)
-            let text = `<strong>Date:</strong> <span style='color:lightblue;float:right'>${d.date}</span><br>`
-            text += `<strong>Spread:</strong> <span style='color:lightblue;float:right'>${d.prem}%</span><br>`
+            let text = `<strong>Date:</strong> <span style='color:lightblue;float:right'>${dateFormatter(d.date)}</span><br>`
+            text += `<strong>Spread:</strong> <span style='color:lightblue;float:right'>${d.prem}</span><br>`
             text += `<strong>Trades:</strong> <span style='color:lightblue;float:right'>${d.trades}</span><br>`
             return text
         })
@@ -51,7 +52,7 @@ let ScatterPlot = ({data}) => {
         const x = d3.scaleBand()
             .range([0, WIDTH])
             .paddingInner(0.3)
-            .paddingOuter(0.2)
+            .paddingOuter(0.7)
 
         const y = d3.scaleLinear()
             .range([HEIGHT, 0])
@@ -62,20 +63,6 @@ let ScatterPlot = ({data}) => {
 
         const yAxisGroup = g.append("g")
             .attr("class", "y axis")
-
-        // d3.csv(datum).then(data => {
-        //     data.forEach(d => {
-        //         d.revenue = Number(d.revenue)
-        //         d.profit = Number(d.profit)
-        //         d.prem = Number(d.prem).toFixed(2)
-        //         d.trades = Number(d.trades)
-        //     })
-
-            // data.map((d) => {
-            //     console.log(d.prem)
-            // })
-
-            // console.log(data)
 
             // let orderedPrem = data.prem.sort()
             // console.log(orderedPrem)
@@ -92,7 +79,7 @@ let ScatterPlot = ({data}) => {
             return {
                 date: d.date,
                 profit: d.profit,
-                prem: Number(d.prem).toFixed(2),
+                prem: Number(d.prem).toFixed(2) + '%',
                 trades: d.trades
             }
         })

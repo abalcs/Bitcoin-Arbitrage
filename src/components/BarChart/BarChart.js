@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 import * as d3tip from "d3-v6-tip";
 
+const dateFormatter = require('../../utils/dateFormat')
+
 const BarChart = ({data}) => {
  
     let buildChart = () => {
@@ -55,7 +57,7 @@ const BarChart = ({data}) => {
         //     d.profit = Number(d.profit)
         // })
         const x = d3.scaleBand()
-            .domain(data.map(d => d.date))
+            .domain(data.map(d => dateFormatter(d.date)))
             .range([0, WIDTH])
             .paddingInner(0.3)
             .paddingOuter(0.2)
@@ -89,7 +91,7 @@ const BarChart = ({data}) => {
             .on('mouseover', tip.show)
             .on('mouseout', tip.hide)
             .attr("y", d => y(d.profit))
-            .attr("x", (d) => x(d.date))
+            .attr("x", (d) => x(dateFormatter(d.date)))
             .attr("width", x.bandwidth)
             .attr("height", d => HEIGHT - y(d.profit))
             .attr("fill", "orange")
