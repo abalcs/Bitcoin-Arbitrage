@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import style from './header.module.scss';
 
 const Header = ({data, btc}) => {
-    const [loading, setLoading] = useState(false)
-    const [sevenDay, setSevenDay] = useState()
+    // const [loading, setLoading] = useState(false)
+    // const [sevenDay, setSevenDay] = useState()
     let satsTotal = [];
     let initalVal = 0;
 

@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import * as d3tip from "d3-v6-tip";
 
 const dateFormatter = require('../../utils/dateFormat');
+// const dotSize = require('../../utils/dotSize');
 
 let ScatterPlot = ({data}) => {
     let buildPlot = () => {
@@ -155,7 +156,7 @@ let ScatterPlot = ({data}) => {
     
     return (
         <div className='scatterPlot'>
-            <h2>Scatter Plot</h2>
+            <h2>SCATTER PLOT</h2>
             <div id='scatterPlot'></div>
             <p><em>Compares the daily spread average to the total number of trades on the given day.  Larger dots indicate higher profit totals for the day.</em></p>
         </div>
