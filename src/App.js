@@ -6,15 +6,15 @@ import BarChart from './components/BarChart/BarChart';
 import ScatterPlot from './components/ScatterPlot/ScatterPlot';
 import { useEffect, useState } from 'react';
 
-// const API_KEY = require('dotenv').config();
-// console.log(API_KEY)
-
 function App() {
   const [data, setData] = useState([]);
   const [btc, setBtc] = useState()
 
+  const apiKey = process.env.REACT_APP_API_KEY
+  const apiValue = process.env.REACT_APP_API_VALUE
+
   let myHeaders = new Headers();
-  myHeaders.append("X-CoinAPI-Key", "9BE033FA-26F0-44DC-8530-D5404A74330D");
+  myHeaders.append(apiKey,apiValue)
 
   let requestOptions = {
     method: 'GET',
@@ -29,8 +29,8 @@ function App() {
     .catch(error => console.log('error', error));
   }
 
-  const getPrice = async () => {
-    await fetch('https://rest.coinapi.io/v1/exchangerate/BTC/USD', requestOptions)
+  const getPrice = () => {
+     fetch('https://rest.coinapi.io/v1/exchangerate/BTC/USD', requestOptions)
     .then(response => response.json())
     .then(result => setBtc(result.rate))
     .catch(error => console.log('error', error));
