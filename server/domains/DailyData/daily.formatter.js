@@ -1,17 +1,43 @@
-// let data = require("../../config/connection");
+const mysql = require('mysql2');
 
-// console.log(data)
-// const getTrades = async () => {
-//     let datum = await data.query('SELECT * FROM trades', (err, results) => {
-//         if(err) throw err;
-//         console.log('Got results: ', results)
-//     });
+const db = mysql.createConnection(
+    {
+        host: 'localhost',
+        user: 'root',
+        password: 'Eleanor2018!',
+        database: 'arbitrage_db'
+    },
+    console.log('Connected to arbitrage_db database')
+);
 
-//     console.log(datum)
-//     return datum;
-// } 
+const topTradeDays = () => {
+    db.query(`SELECT * FROM trades ORDER BY trades.trades DESC LIMIT 5`,  (err, res) => {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log(res)
+        }
+    })
+}
 
-// getTrades()
+const topProfitDays = () => {
+    db.query(`SELECT * FROM trades ORDER BY trades.profit DESC LIMIT 5`,  (err, res) => {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log(res)
+        }
+    })
+}
 
+const orderByDate = () => {
+    db.query(`SELECT * FROM trades ORDER BY trades.date ASC`,  (err, res) => {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log(res)
+        }
+    })
+}
 
-    
+module.exports = {topTradeDays, topProfitDays, orderByDate};
