@@ -23,14 +23,14 @@ function App() {
   };
 
   const getAll = () => {
-     fetch("http://localhost:5050/")
+     fetch("http://localhost:5050/api/trades")
     .then(response => response.json())
     .then(result => setData(result))
     .catch(error => console.log('error', error));
   }
 
   const getPrice = () => {
-     fetch('https://rest.coinapi.io/v1/exchangerate/BTC/USD', requestOptions)
+     fetch('https://rest.coinapi.io/v1/exchangerate/BTC/USD', requestOptions )
     .then(response => response.json())
     .then(result => setBtc(result.rate))
     .catch(error => console.log('error', error));
@@ -41,16 +41,16 @@ function App() {
       getPrice()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
+
   return (
-    <div>
-      <Header data={data} btc={btc}/>
+    <>
+    <Header data={data} btc={btc}/>
       <Form />
       <div className='graphs'>
         <BarChart data={data}/>
         <ScatterPlot data={data}/>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import * as d3tip from "d3-v6-tip";
 
 const dateFormatter = require('../../utils/dateFormat');
-// const dotSize = require('../../utils/dotSize');
+const dotSize = require('../../utils/dotSize');
 
 let ScatterPlot = ({data}) => {
     let buildPlot = () => {
