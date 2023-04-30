@@ -1,0 +1,21 @@
+.statsBar {
+    width: 20%;
+    border-right: 1px solid grey;
+}
+
+.profit, .trade, .yield {
+    padding: 20px 10px;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: red;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+    }
+}
+

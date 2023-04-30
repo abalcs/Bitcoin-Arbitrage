@@ -17,6 +17,51 @@ router.get('/trades', (req, res) => {
     });
 })
 
+router.get('/trades/profit', (req, res) => {
+  Trade.findAll()
+  .then(data => {
+      const sortedData = data.sort((a,b) => {
+        return b.profit - a.profit
+      });
+      const firstFive = sortedData.slice(0, 5);
+      res.json(firstFive)
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+})
+
+router.get('/trades/trades', (req, res) => {
+  Trade.findAll()
+  .then(data => {
+      const sortedData = data.sort((a,b) => {
+        return b.trades - a.trades
+      });
+      const firstFive = sortedData.slice(0, 5);
+      res.json(firstFive)
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+})
+
+router.get('/trades/prem', (req, res) => {
+  Trade.findAll()
+  .then(data => {
+      const sortedData = data.sort((a,b) => {
+        return b.prem - a.prem
+      });
+      const firstFive = sortedData.slice(0, 5);
+      res.json(firstFive)
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+  });
+})
+
 router.post('/trades', (req, res) => {
     Trade.create({
       date: req.body.date,

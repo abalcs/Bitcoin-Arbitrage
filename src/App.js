@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import BarChart from './components/BarChart/BarChart';
 import ScatterPlot from './components/ScatterPlot/ScatterPlot';
+import StatsBar from './components/StatsBar/StatsBar';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -46,10 +47,14 @@ function App() {
     <>
     <Header data={data} btc={btc}/>
       <Form />
-      <div className='graphs'>
-        <BarChart data={data}/>
-        <ScatterPlot data={data}/>
+      <div className='main'>
+        <StatsBar />
+        <div className='graphs'>
+          <BarChart data={data}/>
+          <ScatterPlot data={data}/>
+        </div>
       </div>
+      
     </>
   );
 }

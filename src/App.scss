@@ -11,6 +11,11 @@ body {
   max-width: 100%;
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
 .graphs {
   display: flex;
   justify-content: center;
