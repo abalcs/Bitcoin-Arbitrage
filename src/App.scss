@@ -7,7 +7,6 @@
 body {
   font-family: 'Roboto 400', sans-serif;
   background-color: #fff;
-  // min-height: 100vh;
   max-width: 100%;
 }
 
@@ -103,4 +102,18 @@ body {
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .graphs {
+    transform: scale(.7);
+    margin-top: -100px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .graphs {
+    transform: scale(.5);
+    margin-top: -230px;
+  }
 }

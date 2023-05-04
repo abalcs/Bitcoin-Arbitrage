@@ -66,15 +66,6 @@ const BarChart = ({data}) => {
             .domain([0, d3.max(data, d => d.profit)])
             .range([HEIGHT, 0])
 
-        // let totalTicks = [];
-
-        // for(let datum of data) {
-        //     totalTicks.push(datum.date)
-        // }
-        // console.log(totalTicks.length)
-        // const tickInterval = Math.ceil(totalTicks.length / 5);
-        // console.log(tickInterval)
-
         const xAxisCall = d3.axisBottom(x)
         g.append("g")
             .attr("class", "x axis")

@@ -3,7 +3,6 @@ import * as d3 from 'd3';
 import * as d3tip from "d3-v6-tip";
 
 const dateFormatter = require('../../utils/dateFormat');
-const dotSize = require('../../utils/dotSize');
 
 let ScatterPlot = ({data}) => {
     let buildPlot = () => {
@@ -19,10 +18,6 @@ let ScatterPlot = ({data}) => {
         .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
         .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
         .attr('viewbox', [0, 0, WIDTH, HEIGHT])
-        .attr(
-            'style',
-            'height: intrinsic;'
-          );
 
         const g = svg.append("g")
         .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)
@@ -69,17 +64,6 @@ let ScatterPlot = ({data}) => {
 
         const yAxisGroup = g.append("g")
             .attr("class", "y axis")
-
-            // let orderedPrem = data.prem.sort()
-            // console.log(orderedPrem)
-            // d3.interval(() => {
-            //     flag = !flag;
-            //     const newData = flag ? data : data.slice(1)
-            //     update(newData)
-            // }, 2000)
-           
-            // update(data)
-        // })
         
         data = data.map((d) => {
             return {
@@ -90,8 +74,6 @@ let ScatterPlot = ({data}) => {
             }
         })
 
-        // function update(data) {
-            // const value = flag ? "profit" : "revenue"
             const t = d3.transition().duration(750)
             const spread = [];
 
@@ -107,7 +89,6 @@ let ScatterPlot = ({data}) => {
             const xAxisCall = d3.axisBottom(x)
             g.append("g")
                 xAxisGroup.transition(t).call(xAxisCall)
-                // xAxisGroup.call(xAxisCall)
                 .selectAll("text")
                 .attr("y", "10")
                 .attr("x", "-5")
@@ -118,7 +99,6 @@ let ScatterPlot = ({data}) => {
                 .ticks(5)
                 .tickFormat(d => d + " trades")
                 yAxisGroup.transition(t).call(yAxisCall)
-                // yAxisGroup.call(yAxisCall)
             
             //Join new data with old elements
             const rects = g.selectAll("circle")
@@ -130,11 +110,6 @@ let ScatterPlot = ({data}) => {
                     .attr("height", 0)
                     .attr("cy", y(0))
                     .remove()
-
-            //Update old elements present in new data
-            // rects.transition(t)
-            //     .attr("cy", d => y(d.trades))
-            //     .attr("cx", (d) => x(d.prem) + (x.bandwidth() / 2))
 
             // Enter new elements present in new data
             rects.enter().append("circle")
@@ -150,9 +125,7 @@ let ScatterPlot = ({data}) => {
 
             const text = flag ? "Trades" : "Revenue ($)"
             yLabel.text(text)
-        // }
-        // update(data)
-    }  
+    }
 
     useEffect(() => {
         buildPlot();
