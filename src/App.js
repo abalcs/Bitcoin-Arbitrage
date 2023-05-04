@@ -47,13 +47,16 @@ function App() {
     <>
       <Header />
       <Form />
+
       <div className='main'>
         <StatsBar data={data} btc={btc}/>
         <div className='graphs'>
           <BarChart data={data}/>
           <ScatterPlot data={data}/>
         </div>
+       
       </div>
+      
     </>
   );
 }

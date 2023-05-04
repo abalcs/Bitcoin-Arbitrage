@@ -18,6 +18,11 @@ let ScatterPlot = ({data}) => {
         .append("svg")
         .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
         .attr("height", HEIGHT + MARGIN.TOP + MARGIN.BOTTOM)
+        .attr('viewbox', [0, 0, WIDTH, HEIGHT])
+        .attr(
+            'style',
+            'height: intrinsic;'
+          );
 
         const g = svg.append("g")
         .attr("transform", `translate(${MARGIN.LEFT}, ${MARGIN.TOP})`)

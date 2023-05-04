@@ -92,8 +92,8 @@ const Form = () => {
             </AccordionSummary>
             <AccordionDetails>
                 <form onSubmit={getInputs}>
-                    <div style={{display: 'flex'}}>
-                        <div className={`${style.formInput}`}>
+                    <div className={`${style.formInput}`}>
+                        <div >
                             <TextField 
                             sx={{ width: '200px', margin: '5px 15px'}} 
                             id="date" 
@@ -103,7 +103,7 @@ const Form = () => {
                             required
                             />
                         </div>
-                        <div className={`${style.formInput}`}>
+                        <div>
                             <TextField 
                             sx={{ width: '200px', margin: '5px 15px'}} 
                             id="profit" 
@@ -115,8 +115,8 @@ const Form = () => {
                             required/>
                         </div>
                     </div>
-                    <div style={{display: 'flex'}}>
-                        <div className={`${style.formInput}`}>
+                    <div className={`${style.formInput}`}>
+                        <div>
                             <TextField 
                             sx={{ width: '200px', margin: '5px 15px'}} 
                             id="premium" label='Premium %' 
@@ -125,7 +125,7 @@ const Form = () => {
                             color='primary' 
                             required/>
                         </div>
-                        <div className={`${style.formInput}`}>
+                        <div>
                             <TextField 
                             sx={{ width: '200px', margin: '5px 15px'}} 
                             id="trades" 

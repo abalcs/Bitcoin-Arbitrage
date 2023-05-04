@@ -69,9 +69,9 @@ const StatsBar = ({data, btc}) => {
         <div className={`${style.statsBar}`}>
 
             <div className={`${style.totals}`}>
-                <h2 id='satsTotal'>Total Sats: {sats ? sats : 'loading'}</h2>
-                <h2 id='USDTotal'>Total USD: ${displayPrice ? displayPrice : 'loading'}</h2>
-                <h2 id='lastSeven'>Last 7: ${getSeven()}</h2>
+                <h2 id='satsTotal'><span>Total Sats: {sats ? sats : 'loading'}</span></h2>
+                <h2 id='USDTotal'><span>Total USD: ${displayPrice ? displayPrice : 'loading'}</span></h2>
+                <h2 id='lastSeven'><span>Last 7: ${getSeven()}</span></h2>
             </div>
 
             <div className={`${style.statsContainer}`}>

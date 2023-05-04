@@ -7,21 +7,23 @@
 body {
   font-family: 'Roboto 400', sans-serif;
   background-color: #fff;
-  min-height: 100vh;
+  // min-height: 100vh;
   max-width: 100%;
 }
 
 .main {
   display: flex;
   flex-direction: row;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .graphs {
   display: flex;
   flex-direction: row;
-  // justify-content: center;
+  width: 100%;
+  justify-content: center;
   flex-wrap: wrap;
+  margin:  20px 0px;
 }
 
 .barChart, .scatterPlot {
@@ -29,7 +31,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px 20px;
+  margin: 0 20px;
+  padding: 25px 0px;
 }
 
 .barChart p, .scatterPlot p {
@@ -40,7 +43,7 @@ body {
 
 #barChart, #scatterPlot {
   border: 1px solid grey;
-  padding: 50px;
+  padding: 20px;
   box-shadow: 3px 3px 3px 0 lightgrey;
   border-radius: 2%;
 }

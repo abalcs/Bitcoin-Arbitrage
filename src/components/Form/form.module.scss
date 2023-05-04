@@ -1,4 +1,9 @@
-.formInput, .buttonInput {
+.formInput {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttonInput {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,4 +20,11 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .formInput {
+    display: flex;
+    flex-direction: column;
+  }
 }
