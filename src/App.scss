@@ -14,11 +14,13 @@ body {
 .main {
   display: flex;
   flex-direction: row;
+  // flex-wrap: wrap;
 }
 
 .graphs {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  // justify-content: center;
   flex-wrap: wrap;
 }
 

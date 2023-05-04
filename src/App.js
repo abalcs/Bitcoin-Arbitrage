@@ -45,16 +45,15 @@ function App() {
 
   return (
     <>
-    <Header data={data} btc={btc}/>
+      <Header />
       <Form />
       <div className='main'>
-        <StatsBar />
+        <StatsBar data={data} btc={btc}/>
         <div className='graphs'>
           <BarChart data={data}/>
           <ScatterPlot data={data}/>
         </div>
       </div>
-      
     </>
   );
 }

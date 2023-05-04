@@ -49,6 +49,8 @@ const BarChart = ({data}) => {
         .attr("transform", "rotate(-90)")
         .text("Sats Profit ($)")
 
+        
+
         const x = d3.scaleBand()
             .domain(data.map(d => dateFormatter(d.date)))
             .range([0, WIDTH])
@@ -58,6 +60,15 @@ const BarChart = ({data}) => {
         const y = d3.scaleLinear()
             .domain([0, d3.max(data, d => d.profit)])
             .range([HEIGHT, 0])
+
+        // let totalTicks = [];
+
+        // for(let datum of data) {
+        //     totalTicks.push(datum.date)
+        // }
+        // console.log(totalTicks.length)
+        // const tickInterval = Math.ceil(totalTicks.length / 5);
+        // console.log(tickInterval)
 
         const xAxisCall = d3.axisBottom(x)
         g.append("g")
