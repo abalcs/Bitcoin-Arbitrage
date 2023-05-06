@@ -28,7 +28,7 @@ const Form = () => {
         boxShadow: 24,
         p: 4,
         textAlign: 'center'
-      };
+    };
     
     const getInputs = async (e) => {
         e.preventDefault()
