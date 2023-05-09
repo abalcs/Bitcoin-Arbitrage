@@ -1,10 +1,11 @@
 const express = require('express');
-const Trade = require('../models/Trade');
-const convertToDate = require('../utils/dateSorter')
+const Trade = require('../../models/Trade');
+const convertToDate = require('../../utils/dateSorter')
+const withAuth = require('../../utils/auth')
 
 const router = express();
 
-router.get('/trades', (req, res) => {
+router.get('/', (req, res) => {
     Trade.findAll()
     .then(data => {
         res.json(data.sort((a,b) => {
@@ -17,7 +18,7 @@ router.get('/trades', (req, res) => {
     });
 })
 
-router.get('/trades/profit', (req, res) => {
+router.get('/profit', (req, res) => {
   Trade.findAll()
   .then(data => {
       const sortedData = data.sort((a,b) => {
@@ -32,7 +33,7 @@ router.get('/trades/profit', (req, res) => {
   });
 })
 
-router.get('/trades/trades', (req, res) => {
+router.get('/trades', (req, res) => {
   Trade.findAll()
   .then(data => {
       const sortedData = data.sort((a,b) => {
@@ -47,7 +48,7 @@ router.get('/trades/trades', (req, res) => {
   });
 })
 
-router.get('/trades/prem', (req, res) => {
+router.get('/prem', (req, res) => {
   Trade.findAll()
   .then(data => {
       const sortedData = data.sort((a,b) => {
@@ -62,7 +63,7 @@ router.get('/trades/prem', (req, res) => {
   });
 })
 
-router.post('/trades', (req, res) => {
+router.post('/', (req, res) => {
     Trade.create({
       date: req.body.date,
       profit: req.body.profit,

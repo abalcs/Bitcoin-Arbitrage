@@ -1,5 +1,7 @@
 import './App.scss';
 
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
 import BarChart from './components/BarChart/BarChart';
@@ -45,18 +47,19 @@ function App() {
 
   return (
     <>
+ 
       <Header />
-      <Form />
+        <Form />
 
-      <div className='main'>
-        <StatsBar data={data} btc={btc}/>
-        <div className='graphs'>
-          <BarChart data={data}/>
-          <ScatterPlot data={data}/>
+        <div className='main'>
+          <StatsBar data={data} btc={btc}/>
+          <div className='graphs'>
+            <BarChart data={data}/>
+            <ScatterPlot data={data}/>
+          </div>
+        
         </div>
-       
-      </div>
-      
+  
     </>
   );
 }

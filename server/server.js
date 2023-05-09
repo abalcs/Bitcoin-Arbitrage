@@ -1,20 +1,33 @@
 const express = require('express');
+const sequelize = require('./config/connection');
+const session = require('express-session')
 const path = require('path');
-const routes = require('./api/');
+const routes = require('./controllers');
 const db = require('./config/connection');
 const cors = require('cors')
 
+const app = express();
 const PORT = process.env.PORT || 5050;
-// express returns an Object
-const app = express(); // instance = Object
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// Setup our server
+const sess = {
+  secret: 'exaHash',
+  cookie: {
+      expires: 10 * 60 * 1000
+  },
+  resave: true,
+  rolling: true,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+      db: sequelize
+  }),
+};
+
 app.use(cors())
 app.use('/', express.static(path.join(__dirname, 'client/build')));
-
 app.use(express.json());
+app.use(session(sess))
 app.use(express.urlencoded({ extended: true }));
-
 app.use(routes);
 
 // Heroku 

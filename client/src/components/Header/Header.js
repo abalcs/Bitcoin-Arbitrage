@@ -34,17 +34,21 @@ const Header = () => {
         let email = document.querySelector('#email').value
         let password = document.querySelector('#password').value
         
-        console.log(email, password)
-        // await fetch('http://localhost:5050/api/trades', {
-        //     method: 'Post',
-        //     body: JSON.stringify({
-        //         date: date.value,
-        //         profit: profit.value,
-        //         prem: premium.value,
-        //         trades: trades.value
-        //     }),
-        //     headers: { 'Content-Type': 'application/json' }
-        // })
+        const login = await fetch('http://localhost:5050/api/user/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+
+        if (login.ok) {
+            document.location.reload('/');
+        } else {
+            alert('Failed to log in.');
+        }
+
         handleClose()
     };
 
@@ -54,17 +58,26 @@ const Header = () => {
         let email = document.querySelector('#email').value
         let password = document.querySelector('#password').value
         
-        console.log(email, password)
-        // await fetch('http://localhost:5050/api/trades', {
-        //     method: 'Post',
-        //     body: JSON.stringify({
-        //         date: date.value,
-        //         profit: profit.value,
-        //         prem: premium.value,
-        //         trades: trades.value
-        //     }),
-        //     headers: { 'Content-Type': 'application/json' }
-        // })
+        if(password.length >= 7) {
+            const create = await fetch('http://localhost:5050/api/user', {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+
+            if (create.ok) {
+                document.location.reload('/');
+            } else {
+                alert('Failed to create account.');
+            }
+        } else {
+            alert('Password must be at least 8 characters in length.')
+            return
+        }
+       
         signupClose()
     };
 
