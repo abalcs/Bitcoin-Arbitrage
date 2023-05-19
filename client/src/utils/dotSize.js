@@ -1,5 +1,4 @@
 const dotSize = (data) => {
-    console.log(data)
     // let dot; 
 
     // for(let i = 0; i < data.length; i++) {

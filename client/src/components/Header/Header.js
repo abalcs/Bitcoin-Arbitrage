@@ -33,22 +33,23 @@ const Header = () => {
 
         let email = document.querySelector('#email').value
         let password = document.querySelector('#password').value
-        
+
         const login = await fetch('http://localhost:5050/api/user/login', {
             method: 'POST',
             body: JSON.stringify({
                 email: email,
                 password: password
             }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-control-allow-origin': '*'
+            },
         })
-
         if (login.ok) {
-            document.location.reload('/');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to log in.');
         }
-
         handleClose()
     };
 
@@ -65,11 +66,14 @@ const Header = () => {
                     email: email,
                     password: password,
                 }),
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 
+                    'Content-Type': 'application/json' ,
+                    'Access-control-allow-origin': '*'
+                },
             })
 
             if (create.ok) {
-                document.location.reload('/');
+                document.location.replace('/dashboard');
             } else {
                 alert('Failed to create account.');
             }

@@ -50,3 +50,17 @@
     text-align: center;
    }
 }
+
+@media screen and (max-width: 768px) {
+    .graphs {
+      transform: scale(.7);
+      margin-top: -100px;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .graphs {
+      transform: scale(.5);
+      margin-top: -230px;
+    }
+  }

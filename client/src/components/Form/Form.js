@@ -2,8 +2,11 @@ import { Box, Modal, TextField, Typography, Button, Accordion, AccordionSummary,
 import React, {useState} from 'react';
 
 import style from './form.module.scss';
+import StatsBar from '../StatsBar/StatsBar';
+import BarChart from '../BarChart/BarChart';
+import ScatterPlot from '../ScatterPlot/ScatterPlot';
 
-const Form = () => {
+const Form = ({data, btc}) => {
     const [open, setOpen] = useState(false);
 
     const [date, setDate] = useState()
@@ -43,7 +46,7 @@ const Form = () => {
         setPrem(premium.value)
         setTrades(trades.value)
 
-        await fetch('http://localhost:5050/api/trades', {
+        await fetch('http://localhost:5050/dashboard/', {
             method: 'Post',
             body: JSON.stringify({
                 date: date.value,
@@ -57,7 +60,7 @@ const Form = () => {
     };
 
     return (
-        
+        <>
         <Accordion sx={{ 
             display: 'flex', 
             flexDirection: 'column', 
@@ -174,7 +177,13 @@ const Form = () => {
                     </Box>
                 </Modal>
             </AccordionDetails>
-        </Accordion> 
+        </Accordion>
+        <StatsBar data={data} btc={btc}/>
+        <div className='graphs'>
+            <BarChart data={data}/>
+            <ScatterPlot data={data}/>
+        </div>
+        </>
     );
 }
 

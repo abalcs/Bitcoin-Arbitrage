@@ -1,13 +1,14 @@
 import './App.scss';
 
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Fragment, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
-import BarChart from './components/BarChart/BarChart';
-import ScatterPlot from './components/ScatterPlot/ScatterPlot';
-import StatsBar from './components/StatsBar/StatsBar';
-import { useEffect, useState } from 'react';
+// import BarChart from './components/BarChart/BarChart';
+// import ScatterPlot from './components/ScatterPlot/ScatterPlot';
+// import StatsBar from './components/StatsBar/StatsBar';
+import Landing from './components/Landing/Landing';
 
 function App() {
   const [data, setData] = useState([]);
@@ -26,7 +27,7 @@ function App() {
   };
 
   const getAll = () => {
-     fetch("http://localhost:5050/api/trades")
+     fetch("http://localhost:5050/dashboard/")
     .then(response => response.json())
     .then(result => setData(result))
     .catch(error => console.log('error', error));
@@ -39,28 +40,40 @@ function App() {
     .catch(error => console.log('error', error));
   }
 
+  // const loggedIn = () => {
+  //   fetch('http://localhost:5050/')
+  //   .then(res => res.json())
+  //   .then(data => console.log(data))
+  // }
+
   useEffect(() => {
       getAll();
-      getPrice()
+      getPrice();
+      // loggedIn();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
-    <>
- 
-      <Header />
-        <Form />
-
-        <div className='main'>
-          <StatsBar data={data} btc={btc}/>
-          <div className='graphs'>
-            <BarChart data={data}/>
-            <ScatterPlot data={data}/>
-          </div>
-        
-        </div>
   
-    </>
+    <Router>
+      <Header />
+        <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/dashboard' element={<Form data={data} btc={btc}/>} />
+       
+        {/*
+        <div className='main'>
+          
+          
+          <div className='graphs'>
+            
+          </div>
+
+        </div>
+        */}
+      </Routes>
+    </Router>
+    
   );
 }
 

@@ -11,21 +11,21 @@ const StatsBar = ({data, btc}) => {
     let initalVal = 0;
     
     const getTopProfit = () => {
-        fetch("http://localhost:5050/api/trades/profit")
+        fetch("http://localhost:5050/dashboard/profit")
        .then(response => response.json())
        .then(result => setTopProit(result))
        .catch(error => console.log('error', error));
     }
 
     const getTopTrades = () => {
-        fetch("http://localhost:5050/api/trades/trades")
+        fetch("http://localhost:5050/dashboard/trades")
        .then(response => response.json())
        .then(result => setTopTrades(result))
        .catch(error => console.log('error', error));
     }
 
     const getTopPrem = () => {
-        fetch("http://localhost:5050/api/trades/prem")
+        fetch("http://localhost:5050/dashboard/prem")
        .then(response => response.json())
        .then(result => setTopPrem(result))
        .catch(error => console.log('error', error));

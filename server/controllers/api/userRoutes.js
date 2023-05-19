@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const User = require('../../models/User');
+const auth = require('../../utils/auth');
 
-router.get('/', (req, res) => {
+
+router.get('/', auth, (req, res) => {
     // Access our User model and run .findAll() method
     User.findAll()
       .then(data => res.json(data))
@@ -13,7 +15,6 @@ router.get('/', (req, res) => {
 
 // POST /api/users
 router.post('/', (req, res) => {
-    console.log(req.body.email, req.body.password)
     User.create({
       email: req.body.email,
       password: req.body.password,
@@ -21,7 +22,7 @@ router.post('/', (req, res) => {
     .then(data => {
       req.session.save(() => {
         req.session.user_id = data.id;
-        req.session.username = data.username;
+        req.session.username = data.email;
         req.session.loggedIn = true;
     
         res.json(data);
@@ -51,12 +52,12 @@ router.post('/', (req, res) => {
       req.session.save(() => {
         // declare session variables
         req.session.user_id = data.id;
-        req.session.email = data.email;
+        req.session.username = data.email;
         req.session.loggedIn = true;
-        console.log(req.session)
-        res.json({ user: data.email, message: 'You are now logged in!' });
-      });
-    });
+
+        res.json(data);
+      })
+    })
 });
 
 

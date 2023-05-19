@@ -1,3 +1,12 @@
-// const Trades = require('./Trades');
+const Trade = require('./Trade');
+const User = require('./User');
 
-// module.exports = Trades;
+User.hasMany(Trade, {
+    foreignKey: 'user_id'
+});
+
+Trade.belongsTo(User, {
+    foreignKey: 'user_id'
+})
+
+module.exports = {Trade, User};

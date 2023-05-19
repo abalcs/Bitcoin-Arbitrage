@@ -4,6 +4,8 @@ const session = require('express-session')
 const path = require('path');
 const routes = require('./controllers');
 const db = require('./config/connection');
+const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 const cors = require('cors')
 
 const app = express();
@@ -13,20 +15,32 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
   secret: 'exaHash',
   cookie: {
-      expires: 10 * 60 * 1000
+      path: '/',
+      httpOnly: true,
+      secure: false,
+      expires: 10 * 60 * 1000,
   },
-  resave: true,
-  rolling: true,
+  resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
       db: sequelize
   }),
 };
 
-app.use(cors())
-app.use('/', express.static(path.join(__dirname, 'client/build')));
+let corsOptions = {
+    origin: "http://localhost:3000",
+    methods: ["POST", "PUT", "GET"],
+}
+
+// For Heroku use if it has issue with saving cookie session data
+// app.set("trust proxy", 1);
 app.use(express.json());
+app.use(cors(corsOptions))
 app.use(session(sess))
+app.use(cookieParser())
+
+app.use('/', express.static(path.join(__dirname, 'client/build')));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(routes);
 
@@ -43,4 +57,4 @@ if (process.env.NODE_ENV === 'production') {
 // sync sequelize models to the database, then turn on the server
 db.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`App listening on port ${PORT}!`));
-  });
+});

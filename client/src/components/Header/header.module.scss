@@ -1,5 +1,6 @@
 header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 10px;
   background-color: rgb(32, 32, 32);
@@ -21,6 +22,13 @@ header {
     display: flex;
     align-items: center;
     padding: 10px 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    justify-content: center;
+    padding: 20px
   }
 }
 
