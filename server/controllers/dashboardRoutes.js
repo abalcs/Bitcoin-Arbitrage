@@ -4,7 +4,7 @@ const convertToDate = require('../utils/dateSorter')
 const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
-    // console.log(req.session.user_id)
+  // console.log(req.session)
     Trade.findAll({
       where: {
         user_id: 1

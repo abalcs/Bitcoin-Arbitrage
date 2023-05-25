@@ -1,13 +1,10 @@
 import './App.scss';
 
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header/Header';
 import Form from './components/Form/Form';
-// import BarChart from './components/BarChart/BarChart';
-// import ScatterPlot from './components/ScatterPlot/ScatterPlot';
-// import StatsBar from './components/StatsBar/StatsBar';
 import Landing from './components/Landing/Landing';
 
 function App() {
@@ -40,16 +37,16 @@ function App() {
     .catch(error => console.log('error', error));
   }
 
-  // const loggedIn = () => {
-  //   fetch('http://localhost:5050/')
-  //   .then(res => res.json())
-  //   .then(data => console.log(data))
-  // }
+  const loggedIn = () => {
+    fetch('http://localhost:5050/api/user/login')
+    .then(res => res.json())
+    .then(data => console.log(data))
+  }
 
   useEffect(() => {
       getAll();
       getPrice();
-      // loggedIn();
+      loggedIn();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

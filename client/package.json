@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "proxy": "http://localhost:5050",
   "description": "",
   "main": "index.js",
   "scripts": {

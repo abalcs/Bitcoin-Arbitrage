@@ -7,7 +7,7 @@ const Header = () => {
     const [signOpen, setSignupOpen] = useState(false);
     
     const handleOpen = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setSignupOpen(false)
         setOpen(true)
     };
@@ -44,13 +44,16 @@ const Header = () => {
                 'Content-Type': 'application/json',
                 'Access-control-allow-origin': '*'
             },
+            credentials: 'include'
         })
+        let data = await login.json()
+        console.log(data)
         if (login.ok) {
-            document.location.replace('/dashboard');
+            handleClose()
+            // document.location.replace('/dashboard');
         } else {
-            alert('Failed to log in.');
+            alert('Username or Password Incorrect.  Please try again.')
         }
-        handleClose()
     };
 
     const getSignup = async (e) => {
